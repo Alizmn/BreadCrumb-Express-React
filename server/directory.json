@@ -1,0 +1,57 @@
+{
+  "type": "dir",
+  "children": {
+    "Home": {
+      "type": "dir",
+      "children": {
+        "Music": {
+          "type": "dir",
+          "children": {
+            "Go-Crazy.mp3": { "type": "file" },
+            "Mood.mp3": { "type": "file" }
+          }
+        },
+        "Videos": {
+          "type": "dir",
+          "children": {
+            "Oppan-Gangnam-Style.mkv": { "type": "file" },
+            "Home-Alone.mkv": { "type": "file" }
+          }
+        },
+        "Pictures": {
+          "type": "dir",
+          "children": {
+            "MacOS.png": { "type": "file" },
+            "Linux.png": { "type": "file" }
+          }
+        }
+      }
+    },
+    "Documents": {
+      "type": "dir",
+      "children": {
+        "type": "dir",
+        "children": {
+          "University": {
+            "type": "dir",
+            "children": { "Transcript": { "type": "file" } }
+          },
+          "High-School": {
+            "type": "dir",
+            "children": { "Convocation": { "type": "file" } }
+          }
+        }
+      }
+    },
+    "Downloads": {
+      "type": "dir",
+      "children": {
+        "type": "dir",
+        "children": {
+          "Smokin-Monkey": { "type": "file" },
+          "Trump-Cryin": { "type": "file" }
+        }
+      }
+    }
+  }
+}
