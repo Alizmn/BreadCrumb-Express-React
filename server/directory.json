@@ -30,27 +30,21 @@
     "Documents": {
       "type": "dir",
       "children": {
-        "type": "dir",
-        "children": {
-          "University": {
-            "type": "dir",
-            "children": { "Transcript": { "type": "file" } }
-          },
-          "High-School": {
-            "type": "dir",
-            "children": { "Convocation": { "type": "file" } }
-          }
+        "University": {
+          "type": "dir",
+          "children": { "Transcript": { "type": "file" } }
+        },
+        "High-School": {
+          "type": "dir",
+          "children": { "Convocation": { "type": "file" } }
         }
       }
     },
     "Downloads": {
       "type": "dir",
       "children": {
-        "type": "dir",
-        "children": {
-          "Smokin-Monkey": { "type": "file" },
-          "Trump-Cryin": { "type": "file" }
-        }
+        "Smokin-Monkey": { "type": "file" },
+        "Trump-Cryin": { "type": "file" }
       }
     }
   }
