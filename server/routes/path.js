@@ -7,7 +7,8 @@ const hierarchy = (directory, parent = ["root"]) => {
   const keys = {};
   if (parent.length === 1) {
     if (directory.type === "file") {
-      return `THIS IS FILE : ${parent}`;
+      keys[`THIS IS FILE : ${parent}`] = true;
+      return keys;
     } else {
       for (key in directory.children) {
         keys[key] = true;

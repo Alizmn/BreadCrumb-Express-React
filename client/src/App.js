@@ -5,18 +5,33 @@ import axios from "axios";
 import { Button, Paper } from "@material-ui/core";
 
 function App() {
-  const [state, setState] = useState([]);
+  const [dir, setDir] = useState([]);
+  const [history, setHistory] = useState(["root"]);
+  const [url, setUrl] = useState("http://localhost:3000/path/");
+
   useEffect(() => {
-    axios("http://localhost:3000/path").then((res) =>
-      setState(Object.keys(res.data))
-    );
-  }, []);
+    axios(url).then((res) => setDir(Object.keys(res.data)));
+  }, [url]);
+
+  const handleClick = (event) => {
+    // console.log();
+    const newDir = event.target.textContent;
+    setHistory([...history, newDir]);
+    url.includes("?") ? setUrl(url + `&${newDir}`) : setUrl(url + `?${newDir}`);
+  };
+
   return (
     <div className="App">
       <BreadCrumb />
       <Paper className={"container"} elevation={3}>
-        {state.map((key) => (
-          <Button>{key}</Button>
+        {dir.map((folder) => (
+          <Button
+            key={folder}
+            onClick={(event) => handleClick(event)}
+            disabled={folder.includes("THIS IS FILE : ")}
+          >
+            {folder}
+          </Button>
         ))}
       </Paper>
     </div>
