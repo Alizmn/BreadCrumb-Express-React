@@ -22,7 +22,7 @@ This application contains client and server folders which by providing a directo
 #### Server
 
 - In root directory enter `cd server`
-- Replace your JSON file with the sample there (or test as is!)
+- Replace your JSON file with the sample there (or test as is!) <br/> Keep the format same without extra "," and ";"(standard JSON file)
 - Install dependencies by `npm install`
 - Copy the `.env.example` and rename it to `.env` or run the code below:
 
