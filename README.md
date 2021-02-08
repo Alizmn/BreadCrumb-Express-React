@@ -1,5 +1,7 @@
 # ParseHub Pre-Interview Project ---> Simple BreadCrumb
 
+!["Breadcrumb"](https://github.com/alizmn/BreadCrumb-Express-React/blob/master/images/breadcrumbs-hansel-gretel.jpg?raw=true)
+
 This application contains client and server folders which by providing a directory in JSON can simulate a simple and yet fast breadcrumb.
 
 ## TECH STACKS
@@ -44,6 +46,7 @@ cp .env.example .env
 - Default directory root is "root", but can be changed in `.env`
 - Make sure to enter the server port correctly in `.env` file
 - Now run the client with `npm start`
+  !["Breadcrumb routes"](https://github.com/alizmn/BreadCrumb-Express-React/blob/master/images/breadcrumbs_editorial.jpg?raw=true)
 
 ## ROUTES
 
