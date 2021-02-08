@@ -1,55 +1,59 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
+import { emphasize, withStyles } from "@material-ui/core/styles";
 import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
+import Chip from "@material-ui/core/Chip";
 import HomeIcon from "@material-ui/icons/Home";
-import WhatshotIcon from "@material-ui/icons/Whatshot";
-import GrainIcon from "@material-ui/icons/Grain";
+import FolderIcon from "@material-ui/icons/Folder";
 
-const useStyles = makeStyles((theme) => ({
-  link: {
-    display: "flex",
+// Breadcrumb styling
+const StyledBreadcrumb = withStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.grey[100],
+    height: theme.spacing(3),
+    color: theme.palette.grey[800],
+    fontWeight: theme.typography.fontWeightRegular,
+    "&:hover, &:focus": {
+      backgroundColor: theme.palette.grey[300],
+    },
+    "&:active": {
+      boxShadow: theme.shadows[1],
+      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+    },
   },
-  icon: {
-    marginRight: theme.spacing(0.5),
-    width: 20,
-    height: 20,
-  },
-}));
+}))(Chip);
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info("You clicked a breadcrumb.");
-}
+// function responsible for updating the directory
+const redirectHandle = (history, link, data, item) => {
+  const index = data.indexOf(item);
+  const newHistory = [...data.slice(0, index + 1)];
+  link(`?${newHistory.join("&")}`);
+  return history(newHistory);
+};
 
-export default function BreadCrumb() {
-  const classes = useStyles();
-
+export default function BreadCrumbs({ data, setHistory, setLink }) {
   return (
     <Breadcrumbs aria-label="breadcrumb">
-      <Link
-        color="inherit"
-        href="/"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        <HomeIcon className={classes.icon} />
-        Material-UI
-      </Link>
-      <Link
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-        className={classes.link}
-      >
-        <WhatshotIcon className={classes.icon} />
-        Core
-      </Link>
-      <Typography color="textPrimary" className={classes.link}>
-        <GrainIcon className={classes.icon} />
-        Breadcrumb
-      </Typography>
+      {data.map((item, index) => {
+        if (index === 0) {
+          // only for root directory to have home icon
+          return (
+            <StyledBreadcrumb
+              key={item}
+              icon={<HomeIcon fontSize="small" />}
+              label={item}
+              onClick={() => redirectHandle(setHistory, setLink, data, item)}
+            />
+          );
+        } else {
+          return (
+            <StyledBreadcrumb
+              key={item}
+              icon={<FolderIcon fontSize="small" />}
+              label={item}
+              onClick={() => redirectHandle(setHistory, setLink, data, item)}
+            />
+          );
+        }
+      })}
     </Breadcrumbs>
   );
 }

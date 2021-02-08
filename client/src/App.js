@@ -5,34 +5,40 @@ import axios from "axios";
 import { Button, Paper } from "@material-ui/core";
 
 function App() {
-  const [dir, setDir] = useState([]);
+  const [directory, setDirectory] = useState([]);
   const [history, setHistory] = useState(["root"]);
-  const [url, setUrl] = useState("http://localhost:3000/path/");
+  const [link, setLink] = useState("");
+
+  const url = "http://localhost:3000/path/" + link;
 
   useEffect(() => {
-    axios(url).then((res) => setDir(Object.keys(res.data)));
-  }, [url]);
+    axios(url).then((res) => setDirectory(Object.keys(res.data)));
+  }, [link, history, url]);
 
   const handleClick = (event) => {
-    // console.log();
-    const newDir = event.target.textContent;
-    setHistory([...history, newDir]);
-    url.includes("?") ? setUrl(url + `&${newDir}`) : setUrl(url + `?${newDir}`);
+    const newDirectory = event.target.textContent;
+    setHistory([...history, newDirectory]);
+    link.includes("?")
+      ? setLink(link + `&${newDirectory}`)
+      : setLink(link + `?${newDirectory}`);
   };
 
   return (
     <div className="App">
-      <BreadCrumb />
+      <BreadCrumb data={history} setHistory={setHistory} setLink={setLink} />
+
       <Paper className={"container"} elevation={3}>
-        {dir.map((folder) => (
-          <Button
-            key={folder}
-            onClick={(event) => handleClick(event)}
-            disabled={folder.includes("THIS IS FILE : ")}
-          >
-            {folder}
-          </Button>
-        ))}
+        {directory.map((folder) => {
+          return (
+            <Button
+              key={folder}
+              onClick={(event) => handleClick(event)}
+              disabled={folder.includes("THIS IS FILE : ")}
+            >
+              {folder}
+            </Button>
+          );
+        })}
       </Paper>
     </div>
   );
