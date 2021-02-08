@@ -28,6 +28,7 @@ This application contains client and server folders which by providing a directo
 cp .env.example .env
 ```
 
+- The Server port defines here but can be left as default 3000
 - Now run the server with `npm start` or `npm run dev` for development
 
 #### Client
@@ -48,8 +49,8 @@ cp .env.example .env
 
 ### GET: /directory
 
-- Returns the JSON file for development purpose
+- Returns an overview of the JSON file for development purpose
 
 ### GET: /path
 
-- Returns the root directory and adding more query such as `/path/?root&Home` would return direct children of home directory
+- Returns the root directory and adding more queries such as `/path/?root&Home` would return direct children of home directory
