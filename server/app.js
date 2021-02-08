@@ -20,7 +20,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+// main api route for the client
 app.use("/path", pathRouter({ directory }));
+// show all directories for developement purpose
 app.use("/directory", directoryRouter({ directory }));
 
 module.exports = app;

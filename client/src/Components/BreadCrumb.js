@@ -21,15 +21,14 @@ const StyledBreadcrumb = withStyles((theme) => ({
   },
 }))(Chip);
 
-// function responsible for updating the directory
-const redirectHandle = (history, link, data, item) => {
+// function responsible for updating the link
+const redirectHandle = (link, data, item) => {
   const index = data.indexOf(item);
   const newHistory = [...data.slice(0, index + 1)];
-  link(`?${newHistory.join("&")}`);
-  return history(newHistory);
+  return link(`?${newHistory.join("&")}`);
 };
 
-export default function BreadCrumbs({ data, setHistory, setLink }) {
+export default function BreadCrumbs({ data, setLink }) {
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, index) => {
@@ -40,7 +39,7 @@ export default function BreadCrumbs({ data, setHistory, setLink }) {
               key={item}
               icon={<HomeIcon fontSize="small" />}
               label={item}
-              onClick={() => redirectHandle(setHistory, setLink, data, item)}
+              onClick={() => redirectHandle(setLink, data, item)}
             />
           );
         } else {
@@ -49,7 +48,7 @@ export default function BreadCrumbs({ data, setHistory, setLink }) {
               key={item}
               icon={<FolderIcon fontSize="small" />}
               label={item}
-              onClick={() => redirectHandle(setHistory, setLink, data, item)}
+              onClick={() => redirectHandle(setLink, data, item)}
             />
           );
         }

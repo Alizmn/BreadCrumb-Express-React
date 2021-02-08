@@ -17,3 +17,8 @@
   width: 250px;
   height: 500px;
 }
+
+.loading {
+  align-self: center;
+  margin-top: 200px;
+}

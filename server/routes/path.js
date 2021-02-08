@@ -5,7 +5,6 @@ const router = express.Router();
 const hierarchy = (directory, parent) => {
   const keys = {};
   if (parent.length === 1) {
-    console.log(parent);
     if (directory.type === "file") {
       keys[`THIS IS FILE : ${parent}`] = true;
       return keys;
@@ -20,7 +19,6 @@ const hierarchy = (directory, parent) => {
   for (i = 0; i < parent.length - 1; i++) {
     childs = hierarchy(directory, [parent[i]]);
     if (childs[parent[i + 1]]) {
-      // console.log("HOME", parent[i + 1]);
       parent.shift();
       childs = hierarchy(directory.children[parent[i]], parent);
     }
@@ -28,19 +26,11 @@ const hierarchy = (directory, parent) => {
   return childs;
 };
 
-/* GET users listing. */
 module.exports = ({ directory }) => {
   router.get("/", function (req, res, next) {
-    // let url = ["root"];
-    console.log(req.query);
     Object.keys(req.query).length > 0
       ? (url = [...Object.keys(req.query)])
       : (url = ["root"]);
-    // if (req.query) {
-    //   for (key in req.query) {
-    //     keys.push(key);
-    //   }
-    // }
     res.json(hierarchy(directory, url));
   });
 
