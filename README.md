@@ -45,10 +45,11 @@ cp .env.example .env
 
 - Default directory root is "root", but can be changed in `.env`
 - Make sure to enter the server port correctly in `.env` file
-- Now run the client with `npm start`
-  !["Breadcrumb routes"](https://github.com/alizmn/BreadCrumb-Express-React/blob/master/Images/breadcrumbs_editorial.jpg?raw=true)
+- Now run the client with `npm start` <br/>
 
 ## ROUTES
+
+!["Breadcrumb routes"](https://github.com/alizmn/BreadCrumb-Express-React/blob/master/Images/breadcrumbs_editorial.jpg?raw=true)
 
 ### GET: /directory
 
