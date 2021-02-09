@@ -25,12 +25,22 @@ function App() {
   const handleClick = (event) => {
     const newDirectory = event.target.textContent;
 
+    //  set to show loading circle
+    setWait(true);
+
     setLink(link + `&${newDirectory}`);
   };
 
   return (
     <div className="App">
-      <BreadCrumb data={link.replace("?", "").split("&")} setLink={setLink} />
+      {/* "wait" prop is a way to disable breadcrumb and make it work smoothly.
+          But it can be removed and would work completely fine without it */}
+      <BreadCrumb
+        data={link.replace("?", "").split("&")}
+        wait={wait}
+        setLink={setLink}
+        setWait={setWait}
+      />
 
       <Paper className={"container"} elevation={3}>
         {wait && <CircularProgress disableShrink className={"loading"} />}

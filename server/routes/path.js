@@ -31,7 +31,11 @@ module.exports = ({ directory }) => {
     Object.keys(req.query).length > 0
       ? (url = [...Object.keys(req.query)])
       : (url = ["root"]);
-    setTimeout(() => res.json(hierarchy(directory, url)), 1000);
+
+    // Normal response
+    res.json(hierarchy(directory, url)).status(200);
+    // some artificial lags 700 ms
+    // setTimeout(() => res.json(hierarchy(directory, url)).status(200), 1000);
   });
 
   return router;

@@ -22,13 +22,17 @@ const StyledBreadcrumb = withStyles((theme) => ({
 }))(Chip);
 
 // function responsible for updating the link
-const redirectHandle = (link, data, item) => {
+const redirectHandle = (link, loading, data, item) => {
+  //  set to show loading circle
+
   const index = data.indexOf(item);
   const newHistory = [...data.slice(0, index + 1)];
+  // check if it is the same item that clicked!
+  if (index !== data.length - 1) loading(true);
   return link(`?${newHistory.join("&")}`);
 };
 
-export default function BreadCrumbs({ data, setLink }) {
+export default function BreadCrumbs({ data, setLink, wait, setWait }) {
   return (
     <Breadcrumbs aria-label="breadcrumb">
       {data.map((item, index) => {
@@ -37,18 +41,20 @@ export default function BreadCrumbs({ data, setLink }) {
           return (
             <StyledBreadcrumb
               key={item}
+              disabled={wait}
               icon={<HomeIcon fontSize="small" />}
               label={item}
-              onClick={() => redirectHandle(setLink, data, item)}
+              onClick={() => redirectHandle(setLink, setWait, data, item)}
             />
           );
         } else {
           return (
             <StyledBreadcrumb
               key={item}
+              disabled={wait}
               icon={<FolderIcon fontSize="small" />}
               label={item}
-              onClick={() => redirectHandle(setLink, data, item)}
+              onClick={() => redirectHandle(setLink, setWait, data, item)}
             />
           );
         }
