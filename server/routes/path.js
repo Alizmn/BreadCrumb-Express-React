@@ -35,7 +35,7 @@ module.exports = ({ directory }) => {
     // Normal response
     res.json(hierarchy(directory, url)).status(200);
     // some artificial lags 700 ms
-    // setTimeout(() => res.json(hierarchy(directory, url)).status(200), 1000);
+    // setTimeout(() => res.json(hierarchy(directory, url)).status(200), 700);
   });
 
   return router;
